@@ -214,6 +214,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   animationSpeed: 10
+  trailRenderer: {fileID: 996266347899770452}
 --- !u!65 &1321771553984986124
 BoxCollider:
   m_ObjectHideFlags: 0
