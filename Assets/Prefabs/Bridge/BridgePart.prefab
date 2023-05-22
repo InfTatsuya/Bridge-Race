@@ -143,11 +143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 6870893132296548470}
-  materials:
-  - {fileID: 2100000, guid: 7e03fe4805ec872418b407d4a9078c16, type: 2}
-  - {fileID: 2100000, guid: 3e28ab1a9d643bc419d7fda42365009f, type: 2}
-  - {fileID: 2100000, guid: bb1fde3a831d9f54ca59ea764365897d, type: 2}
-  - {fileID: 2100000, guid: 471953ca642f8ab488288369b4fc8059, type: 2}
+  colorData: {fileID: 11400000, guid: 9f9e2db3ee61a574cae11f024aa34b6b, type: 2}
   offset: {x: 0, y: 0, z: 0.5}
   index: 0
   brickType: 5

@@ -47,12 +47,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brickType: 3
-  materialArray:
-  - {fileID: 2100000, guid: 7e03fe4805ec872418b407d4a9078c16, type: 2}
-  - {fileID: 2100000, guid: 3e28ab1a9d643bc419d7fda42365009f, type: 2}
-  - {fileID: 2100000, guid: bb1fde3a831d9f54ca59ea764365897d, type: 2}
-  - {fileID: 2100000, guid: 471953ca642f8ab488288369b4fc8059, type: 2}
-  - {fileID: 2100000, guid: da4deeb3e5e8c204fa435c29dcc83c81, type: 2}
+  colorData: {fileID: 11400000, guid: 9f9e2db3ee61a574cae11f024aa34b6b, type: 2}
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: 0.046675835
+      outSlope: 0.046675835
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.20192301
+    - serializedVersion: 3
+      time: 1
+      value: 0.0009422302
+      inSlope: -2.7164671
+      outSlope: -2.7164671
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.0954144
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!65 &4752595118793292345
 BoxCollider:
   m_ObjectHideFlags: 0

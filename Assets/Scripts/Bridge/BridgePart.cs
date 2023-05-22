@@ -7,7 +7,8 @@ using UnityEngine;
 public class BridgePart : MonoBehaviour
 {
     [SerializeField] MeshRenderer meshRenderer;
-    [SerializeField] Material[] materials;
+    //[SerializeField] Material[] materials;
+    [SerializeField] ColorData colorData;
     [SerializeField] Vector3 offset = new Vector3(0f, 0.2f, 0.5f);
     [SerializeField] int index;
 
@@ -104,27 +105,6 @@ public class BridgePart : MonoBehaviour
 
     private void SetupBridgePart(BrickType brickType)
     {
-        switch (brickType)
-        {
-            case BrickType.RedBrick:
-                meshRenderer.material = materials[0];
-                break;
-
-            case BrickType.GreenBrick:
-                meshRenderer.material = materials[1];
-                break;
-
-            case BrickType.BlueBrick:
-                meshRenderer.material = materials[2];
-                break;
-
-            case BrickType.YellowBrick:
-                meshRenderer.material = materials[3];
-                break;
-
-            default:
-                break;
-
-        }
+        meshRenderer.material = colorData.GetMaterial(brickType);
     }
 }

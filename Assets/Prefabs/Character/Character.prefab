@@ -82,6 +82,8 @@ MonoBehaviour:
   brickParent: {fileID: 5598386969630121825}
   offset: 0.3
   brickType: 0
+  colorData: {fileID: 0}
+  skinnedMeshRenderer: {fileID: 0}
   brickTag: 
   stageIndex: 0
   collectedBricks: []

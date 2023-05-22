@@ -10,6 +10,8 @@ public class LevelManager : MonoBehaviour
     public List<Vector3> bridgeStartPositionStageTwo;
     public List<Vector3> bridgeStartPositionStageThree;
 
+    public Vector3 winPos;
+
     public List<Level> levelScriptableObjList;
 
     [SerializeField] private int currentLevel = -1;
@@ -44,6 +46,8 @@ public class LevelManager : MonoBehaviour
         bridgeStartPositionStageOne = level.bridgeStartPositionStageOne;
         bridgeStartPositionStageTwo = level.bridgeStartPositionStageTwo;
         bridgeStartPositionStageThree = level.bridgeStartPositionStageThree;
+
+        winPos = level.winPos;
 
         PoolManager.Instance.SetBrickStartPosition(level.startPositionStageOne, level.startPositionStageTwo, level.startPositionStageTree);
     }

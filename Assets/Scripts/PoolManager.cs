@@ -137,6 +137,8 @@ public class PoolManager : MonoBehaviour
 
     private void SpawnBrickOnNewStage(EndBridge.OnAnyCharacterPassArgs e)
     {
+        if (e.stageIndex >= 3) return;
+
         List<BrickObject> list = GetBrickList(e.characterBrickType);
         list.Clear();
 
@@ -146,7 +148,7 @@ public class PoolManager : MonoBehaviour
         Vector3 startPos = GetStartPositionByStage(e.stageIndex);
         bool[,] checkArray = GetCheckArray(e.stageIndex);
 
-        for (int i = 0; i < brickPool.Count; i++)
+        for (int i = 0; i < amountOfBrickPerColor; i++)
         {
             BrickObject newBrick = brickPool.GetPooledObject();
             newBrick.transform.SetParent(null);

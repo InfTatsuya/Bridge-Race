@@ -131,6 +131,12 @@ public class Enemy : Character
     {
         base.OnNewStage();
 
+        if (StageIndex >= 3)
+        {
+            MoveTo(LevelManager.Instance.winPos);
+            return;
+        }
+
         bricksToCollect.Clear();
 
         StartCoroutine(GetBrickList(brickType));
@@ -138,6 +144,8 @@ public class Enemy : Character
         CharacterStateMachine.ChangeState(IdleState);
 
         BridgeIndex = -1;
+
+        
     }
 
     public Vector3 GetBridgeStartPosition()

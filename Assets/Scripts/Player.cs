@@ -90,19 +90,8 @@ public class Player : Character
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("collision chay");
-    }
-
     public void SetPlayerHeight(float y)
     {
-
-        //Vector3 position = new Vector3(transform.position.x, y, transform.position.z);
-        //transform.position = position;
-
         yPos = y;
-
-        Debug.Log("Set player height: " + y + " " + transform.position);
     }
 }

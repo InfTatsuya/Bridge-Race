@@ -14,8 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPositionStageOne: {x: 0, y: 0, z: 0}
   startPositionStageTwo: {x: 0, y: 3.5, z: 110}
-  startPositionStageTree: {x: 0, y: 0, z: 0}
+  startPositionStageTree: {x: 0, y: 7, z: 175}
+  winPos: {x: 24, y: 7, z: 175}
   bridgeStartPositionStageOne:
   - {x: 20, y: 0, z: 50.1}
-  bridgeStartPositionStageTwo: []
+  - {x: 0, y: 0, z: 50.1}
+  - {x: 10, y: 0, z: 50.1}
+  - {x: 30, y: 0, z: 50.1}
+  bridgeStartPositionStageTwo:
+  - {x: 31, y: 3.5, z: 160}
+  - {x: 18, y: 3.5, z: 160}
   bridgeStartPositionStageThree: []

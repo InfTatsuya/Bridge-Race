@@ -18,6 +18,8 @@ public abstract class Character : MonoBehaviour
     [SerializeField] protected Transform brickParent;
     [SerializeField] protected float offset = 0.3f;
     [SerializeField] protected BrickType brickType;
+    [SerializeField] protected ColorData colorData;
+    [SerializeField] protected SkinnedMeshRenderer skinnedMeshRenderer;
     public BrickType CharacterBrickType { get => brickType; }
 
     [SerializeField] protected string brickTag;
@@ -47,6 +49,7 @@ public abstract class Character : MonoBehaviour
         ClearBricks();
         stateMachine = new StateMachine();
         brickTag = GetBrickTagByColor();
+        skinnedMeshRenderer.material = colorData.GetMaterial(brickType);
 
         stageIndex = 1;
     }
@@ -55,7 +58,7 @@ public abstract class Character : MonoBehaviour
     {
         collectedBricks.Add(brick);
         brick.transform.SetParent(brickParent, false);
-        brick.transform.localPosition = Vector3.zero + Vector3.up * offset * collectedBricks.Count;
+        brick.SetBrickLocalPosition(Vector3.up * offset * collectedBricks.Count);
         brick.transform.localRotation = Quaternion.identity;
     }
 

@@ -7,7 +7,11 @@ public class BrickObject : MonoBehaviour
     [SerializeField] BrickType brickType = BrickType.RedBrick;
     private BrickType defaultType;
 
-    [SerializeField] Material[] materialArray;
+    [SerializeField] ColorData colorData;
+    //[SerializeField] Material[] materialArray;
+    [SerializeField] AnimationCurve animationCurve;
+    [SerializeField] float animationSpeed = 10f;
+    [SerializeField] TrailRenderer trailRenderer;
 
     private BoxCollider boxCollider;
     private MeshRenderer meshRenderer;
@@ -41,7 +45,7 @@ public class BrickObject : MonoBehaviour
 
     private IEnumerator SetupDroppedBrick()
     {
-        meshRenderer.material = materialArray[4];
+        meshRenderer.material = colorData.GetMaterial(BrickType.UndefinedBrick);
         gameObject.tag = "UndefinedBrick";
 
         yield return new WaitForSeconds(0.1f);
@@ -60,28 +64,7 @@ public class BrickObject : MonoBehaviour
     {
         gameObject.tag = brickType.ToString();
 
-        switch (brickType)
-        {
-            case BrickType.RedBrick:
-                meshRenderer.material = materialArray[0];
-                break;
-
-            case BrickType.GreenBrick:
-                meshRenderer.material = materialArray[1];
-                break;
-
-            case BrickType.BlueBrick:
-                meshRenderer.material = materialArray[2];
-                break;
-
-            case BrickType.YellowBrick:
-                meshRenderer.material = materialArray[3];
-                break;
-
-            default:
-                break;
-
-        }
+        meshRenderer.material = colorData.GetMaterial(brickType);
     }
 
     private ObjectPool<BrickObject> pool;
@@ -99,6 +82,8 @@ public class BrickObject : MonoBehaviour
 
         State = BrickState.OnGround;
         defaultType = brickType;
+
+        trailRenderer.enabled = false;
     }
 
     public void SetupBrick(BrickType brickType)
@@ -107,16 +92,33 @@ public class BrickObject : MonoBehaviour
 
         SetupBrickColor();
     }
-}
 
-public enum BrickType
-{
-    RedBrick,
-    GreenBrick,
-    BlueBrick,
-    YellowBrick,
-    UndefinedBrick,
-    NoColor
+    public void SetBrickLocalPosition(Vector3 localPos)
+    {
+        StartCoroutine(MovingRoutine(localPos));
+    }
+
+    private IEnumerator MovingRoutine(Vector3 target)
+    {
+        trailRenderer.enabled = true;
+
+        float deltaX = 2f;
+        float deltaY = target.y;
+        float t = 0;
+        while(t < 1f)
+        {
+            float value = animationCurve.Evaluate(t);
+            Vector3 pos = new Vector3(deltaX * value, deltaY * t, 0f);
+            transform.localPosition = pos;
+
+            yield return new WaitForSeconds(0.1f);
+
+            t += Time.deltaTime * animationSpeed;
+        }
+
+        transform.localPosition = target;
+        trailRenderer.enabled = false;
+    }
 }
 
 public enum BrickState
