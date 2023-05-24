@@ -12,15 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f272d0e84cfa4c547b9a22f8d07fb008, type: 3}
   m_Name: Level_2
   m_EditorClassIdentifier: 
+  levelPrefab: {fileID: 6035830667246115950, guid: 03919aaa3a7d8834bbc2220e69210e01,
+    type: 3}
   startPositionStageOne: {x: 0, y: 0, z: 0}
   startPositionStageTwo: {x: 0, y: 0, z: 0}
   startPositionStageTree: {x: 0, y: 0, z: 0}
+  winPos: {x: 0, y: 0, z: 0}
   bridgeStartPositionStageOne:
   - {x: 0, y: 0, z: 0}
   - {x: 1, y: 0, z: 1}
+  - {x: 2, y: 0, z: 1}
+  - {x: 3, y: 0, z: 1}
   bridgeStartPositionStageTwo:
   - {x: 0, y: 0, z: 0}
-  bridgeStartPositionStageThree:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
+  bridgeStartPositionStageThree: []

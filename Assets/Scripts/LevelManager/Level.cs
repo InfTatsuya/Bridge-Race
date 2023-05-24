@@ -6,6 +6,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "SO/Level", fileName ="Level_")]
 public class Level : ScriptableObject
 {
+    public GameObject levelPrefab;
+
     public Vector3 startPositionStageOne;
     public Vector3 startPositionStageTwo;
     public Vector3 startPositionStageTree;

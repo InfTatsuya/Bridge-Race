@@ -35,10 +35,12 @@ public class EnemyIdleState : State
         {
             if(enemy.collectedBricks.Count >= 15)
             {
+                Debug.Log("ChangeTo Build");
                 enemy.CharacterStateMachine.ChangeState(enemy.BuildState);
             }
             else
             {
+                Debug.Log("ChangeTo CollectState");
                 enemy.CharacterStateMachine.ChangeState(enemy.CollectState);
             }
 

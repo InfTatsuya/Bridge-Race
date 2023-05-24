@@ -8,12 +8,15 @@ public abstract class Character : MonoBehaviour
     [SerializeField] protected float moveSpeed = 5f;
 
     [SerializeField] protected Animator anim;
+    public Animator Anim => anim;
     protected Rigidbody rb;
 
     protected StateMachine stateMachine;
     public StateMachine CharacterStateMachine { get => stateMachine; }
 
     protected bool isStunned;
+
+    public bool IsPaused { get; set; }
 
     [SerializeField] protected Transform brickParent;
     [SerializeField] protected float offset = 0.3f;
@@ -28,6 +31,8 @@ public abstract class Character : MonoBehaviour
     public int StageIndex { get => stageIndex; set => stageIndex = value; }
 
     public List<BrickObject> collectedBricks = new List<BrickObject>();
+
+    protected Vector3 startPosition;
     protected virtual void Start()
     {
         OnInit();
@@ -35,7 +40,7 @@ public abstract class Character : MonoBehaviour
 
     protected virtual void Update()
     {
-        if(stateMachine.CurrentState != null) 
+        if(stateMachine.CurrentState != null && !IsPaused) 
         {
             stateMachine.CurrentState.Tick();
         }
@@ -45,6 +50,8 @@ public abstract class Character : MonoBehaviour
 
     protected virtual void OnInit()
     {
+        UIManager.onNextLevel += UIManager_onNextLevel;
+
         rb = GetComponent<Rigidbody>();
         ClearBricks();
         stateMachine = new StateMachine();
@@ -52,6 +59,8 @@ public abstract class Character : MonoBehaviour
         skinnedMeshRenderer.material = colorData.GetMaterial(brickType);
 
         stageIndex = 1;
+
+        startPosition = transform.position;
     }
 
     protected virtual void AddBrick(BrickObject brick)
@@ -70,6 +79,14 @@ public abstract class Character : MonoBehaviour
 
     protected void ClearBricks()
     {
+        if(collectedBricks.Count > 0)
+        {
+            foreach (var brick in collectedBricks)
+            {
+                brick.Release();
+            }
+        }
+
         collectedBricks.Clear();    
     }
 
@@ -106,4 +123,20 @@ public abstract class Character : MonoBehaviour
     }
 
 
+    private void UIManager_onNextLevel(object sender, System.EventArgs e)
+    {
+        NextLevel();
+    }
+
+    protected virtual void NextLevel()
+    {
+        stageIndex = 1;
+
+        ClearBricks();
+    }
+
+    public virtual void Dance()
+    {
+
+    }
 }

@@ -10,6 +10,9 @@ public class Player : Character
     public Vector2 MoveDirection { get => moveDirection; }
     public bool CanMoveForward { get; set; }
 
+    private bool isDance;
+    public bool IsDance { get => isDance; set => isDance = value; }
+
     private float yPos;
 
     #region State
@@ -18,6 +21,7 @@ public class Player : Character
     public PlayerMoveState MoveState { get; private set; }
     public PlayerStunnedState StunnedState { get; private set; }
     public PlayerBuildState BuildState { get; private set; }
+    public PlayerWinState WinState { get; private set; }
 
     #endregion
 
@@ -30,6 +34,8 @@ public class Player : Character
     protected override void Update()
     {
         base.Update();
+
+        if (isDance) return;
 
         if (isStunned) return;
 
@@ -59,6 +65,7 @@ public class Player : Character
 
         IdleState = new PlayerIdleState(this, anim, StringCollection.idleString, this);
         MoveState = new PlayerMoveState(this, anim, StringCollection.moveString, this);
+        WinState = new PlayerWinState(this, anim, StringCollection.danceString, this);
 
         stateMachine.Initialize(IdleState);
     }
@@ -90,8 +97,23 @@ public class Player : Character
         }
     }
 
+    protected override void NextLevel()
+    {
+        base.NextLevel();
+
+        transform.position = startPosition;
+        moveDirection = Vector2.zero;
+        stateMachine.ChangeState(IdleState);
+    }
+
     public void SetPlayerHeight(float y)
     {
         yPos = y;
+    }
+
+    public override void Dance()
+    {
+        
+        stateMachine.ChangeState(WinState);
     }
 }

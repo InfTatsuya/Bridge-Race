@@ -18,10 +18,17 @@ public class EnemyCollectState : State
     {
         base.Enter();
 
+        //if (agent == null)
+        //{
+        //    Debug.Log("Change State vi NavMesh");
+        //    enemy.CharacterStateMachine.ChangeState(enemy.IdleState);
+        //}
+
         Vector3 target = enemy.GetClosestBrick();
 
         if(target == Vector3.zero)
         {
+            Debug.Log("ChangeTo BuildState");
             enemy.CharacterStateMachine.ChangeState(enemy.BuildState);
             return;
         }
