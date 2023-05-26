@@ -227,7 +227,8 @@ MonoBehaviour:
   brickTag: 
   stageIndex: 0
   collectedBricks: []
-  idleTime: 3
+  agent: {fileID: 0}
+  idleTime: 2
   stunnedTime: 3
   bridgeIndex: -1
   bricksToCollect: []

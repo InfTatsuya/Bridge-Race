@@ -9,6 +9,9 @@ public class Player : Character
     private Vector2 moveDirection;
     public Vector2 MoveDirection { get => moveDirection; }
     public bool CanMoveForward { get; set; }
+    public bool CanMoveBackward { get; set; }
+    public bool CanMoveLeft { get; set; }
+    public bool CanMoveRight { get; set; }
 
     private bool isDance;
     public bool IsDance { get => isDance; set => isDance = value; }
@@ -29,6 +32,9 @@ public class Player : Character
     {
         base.Start();
         CanMoveForward = true;
+        CanMoveBackward = true;
+        CanMoveLeft = true;
+        CanMoveRight = true;
     }
 
     protected override void Update()
@@ -39,22 +45,45 @@ public class Player : Character
 
         if (isStunned) return;
 
-        if(Mathf.Abs(moveDirection.x) > 0.1f && Mathf.Abs(moveDirection.y) > 0.1f)
+        if (Mathf.Abs(moveDirection.x) > 0.1f && Mathf.Abs(moveDirection.y) > 0.1f)
         {
             Quaternion newRotation = Quaternion.LookRotation(new Vector3(moveDirection.x, 0f, moveDirection.y));
             transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * 30f);
         }
 
-        if(!CanMoveForward)
-        {
-            float yDir = Mathf.Clamp(moveDirection.y, -1, 0);
-            moveDirection = new Vector2(moveDirection.x, yDir);
-        }
+        ConstrainPlayerMoveArea();
         float xPos = transform.position.x + moveDirection.x * moveSpeed * Time.deltaTime;
         float zPos = transform.position.z + moveDirection.y * moveSpeed * Time.deltaTime;
 
         Vector3 newPosition = new Vector3(xPos, yPos, zPos);
         transform.position = newPosition;
+    }
+
+    private void ConstrainPlayerMoveArea()
+    {
+        if (!CanMoveForward)
+        {
+            float yDir = Mathf.Clamp(moveDirection.y, -1, 0);
+            moveDirection = new Vector2(moveDirection.x, yDir);
+        }
+
+        if (!CanMoveBackward)
+        {
+            float yDir = Mathf.Clamp(moveDirection.y, 0, 1);
+            moveDirection = new Vector2(moveDirection.x, yDir);
+        }
+
+        if (!CanMoveRight)
+        {
+            float xDir = Mathf.Clamp(moveDirection.x, -1, 0);
+            moveDirection = new Vector2(xDir, moveDirection.y);
+        }
+
+        if (!CanMoveLeft)
+        {
+            float xDir = Mathf.Clamp(moveDirection.x, 0, 1);
+            moveDirection = new Vector2(xDir, moveDirection.y);
+        }
     }
 
     protected override void OnInit()
@@ -95,6 +124,8 @@ public class Player : Character
             brick.SetupBrick(brickType);
             AddBrick(brick);
         }
+
+
     }
 
     protected override void NextLevel()

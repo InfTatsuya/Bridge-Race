@@ -184,6 +184,7 @@ public class PoolManager : MonoBehaviour
             }
 
             newBrick.transform.position = startPos + new Vector3(randomX, 0f, randomY) * 3f;
+            newBrick.transform.rotation = Quaternion.identity;
             checkArray[randomX, randomY] = true;
 
             list.Add(newBrick);
@@ -197,6 +198,7 @@ public class PoolManager : MonoBehaviour
         for (int i = 0; i < amountOfBrickPerColor; i++)
         {
             BrickObject newBrick = redPool.GetPooledObject();
+            newBrick.transform.rotation = Quaternion.identity;
             redBricks.Add(newBrick);
             bricks.Add(newBrick);
         }
@@ -204,6 +206,7 @@ public class PoolManager : MonoBehaviour
         for (int i = 0; i < amountOfBrickPerColor; i++)
         {
             BrickObject newBrick = greenPool.GetPooledObject();
+            newBrick.transform.rotation = Quaternion.identity;
             greenBricks.Add(newBrick);
             bricks.Add(newBrick);
         }
@@ -211,6 +214,7 @@ public class PoolManager : MonoBehaviour
         for (int i = 0; i < amountOfBrickPerColor; i++)
         {
             BrickObject newBrick = bluePool.GetPooledObject();
+            newBrick.transform.rotation = Quaternion.identity;
             blueBricks.Add(newBrick);
             bricks.Add(newBrick);
         }
@@ -218,6 +222,7 @@ public class PoolManager : MonoBehaviour
         for (int i = 0; i < amountOfBrickPerColor; i++)
         {
             BrickObject newBrick = yellowPool.GetPooledObject();
+            newBrick.transform.rotation = Quaternion.identity;
             yellowBricks.Add(newBrick);
             bricks.Add(newBrick);
         }

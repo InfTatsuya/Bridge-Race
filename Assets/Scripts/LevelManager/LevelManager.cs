@@ -45,6 +45,11 @@ public class LevelManager : MonoBehaviour
         SetLevelInfo(levelScriptableObjList[currentLevel]);
     }
 
+    public void ResetLevel()
+    {
+        SetLevelInfo(levelScriptableObjList[currentLevel]);
+    }
+
     private void SetLevelInfo(Level level)
     {
         if(levelInstance != null)

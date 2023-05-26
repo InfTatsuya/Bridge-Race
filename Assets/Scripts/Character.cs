@@ -73,6 +73,7 @@ public abstract class Character : MonoBehaviour
 
     protected virtual void RemoveBrick(BrickObject brick)
     {
+        brick.transform.SetParent(null);
         brick.Release();
         collectedBricks.Remove(brick);
     }

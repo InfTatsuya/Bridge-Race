@@ -63,6 +63,7 @@ public class Enemy : Character
 
     private void StartPlaying()
     {
+        IsPaused = false;
         stateMachine.Initialize(IdleState);
     }
 
