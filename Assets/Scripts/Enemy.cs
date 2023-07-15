@@ -182,8 +182,6 @@ public class Enemy : Character
         CharacterStateMachine.ChangeState(IdleState);
 
         BridgeIndex = -1;
-
-
     }
 
     private void GetNewBrickList()

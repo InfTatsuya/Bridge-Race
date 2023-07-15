@@ -135,6 +135,7 @@ public class Player : Character
         transform.position = startPosition;
         moveDirection = Vector2.zero;
         stateMachine.ChangeState(IdleState);
+        SetPlayerHeight(0f);
     }
 
     public void SetPlayerHeight(float y)
